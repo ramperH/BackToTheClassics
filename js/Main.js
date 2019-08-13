@@ -1,6 +1,7 @@
 var GameInfo = {
 	elements: [
-		new Cursor()
+		new Cursor(),
+		new Player()
 	]
 	
 };
