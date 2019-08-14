@@ -16,12 +16,14 @@ function BaseUnit(posx, posy) {
 	}
 
 	this.move = function() {
+		var newX = this.x;
+		var newY = this.y;
 		if (newPosition.x != -1)
 		{
 			// Mover hacia el punto objetivo.
 			//si, al hacer el movimiento, voy a colisionar, buscar una mejor ruta
 			var speedX = this.x <= newPosition.x ? speed : (-1)*speed;
-			this.x += speedX;
+			newX += speedX;
 			if ((newPosition.x - speed) <= this.x && (newPosition.x + speed) >= this.x)
 				newPosition.x = -1;
 		}
@@ -30,9 +32,14 @@ function BaseUnit(posx, posy) {
 			// Mover hacia el punto objetivo.
 			//si, al hacer el movimiento, voy a colisionar, buscar una mejor ruta
 			var speedY = this.y <= newPosition.y ? speed : (-1)*speed;
-			this.y += speedY;
+			newY += speedY;
 			if ((newPosition.y - speed) <= this.y && (newPosition.y + speed) >= this.y)
 				newPosition.y = -1;
+		}
+
+		if (BaseUnit.canBeInNewPosition({width: this.width-10, height: this.height-10, x: newX, y: newY, id: id})) {
+			this.x = newX;
+			this.y = newY;
 		}
 	}
 

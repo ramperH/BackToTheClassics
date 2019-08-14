@@ -33,6 +33,15 @@ function Player() {
 			}
 		}
 	};
+
+	BaseUnit.canBeInNewPosition = function(unit) {
+		for (var i=0; i<units.length; i++) {
+			if (units[i].getId() != unit.id && collide(units[i], unit))
+				return false;
+		}
+		return true;
+	}.bind(this);
+
 	cursor.onSelect = function(selectionRectangle) {
 		var newSelection = [];
 		for (var i=0; i<units.length; i++) {
