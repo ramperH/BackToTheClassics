@@ -2,6 +2,7 @@ function Player() {
 	var units = [];
 	var selectedUnits = [];
 	var unidadPrueba = new BaseUnit(100, 100);
+	var unidadPrueba2 = new BaseUnit(200, 100);
 	units.push(unidadPrueba);
 	selectedUnits.push(unidadPrueba);
 
