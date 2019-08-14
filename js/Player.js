@@ -3,9 +3,16 @@ function Player() {
 	var units = [];
 	var selectedUnits = [];
 	var unidadPrueba = new BaseUnit(100, 100);
-	var unidadPrueba2 = new BaseUnit(500, 100);
 	units.push(unidadPrueba);
-	units.push(unidadPrueba2);
+	units.push(new BaseUnit(500, 100));
+	units.push(new BaseUnit(500, 100));
+	units.push(new BaseUnit(200, 100));
+	units.push(new BaseUnit(450, 200));
+	units.push(new BaseUnit(300, 100));
+	units.push(new BaseUnit(600, 100));
+	units.push(new BaseUnit(300, 400));
+	units.push(new BaseUnit(300, 200));
+	units.push(new BaseUnit(350, 120));
 	selectedUnits.push(unidadPrueba);
 
 
@@ -41,6 +48,21 @@ function Player() {
 		}
 		return true;
 	}.bind(this);
+
+	BaseUnit.intersect = function(line, id, callback) {
+		for (var i=0; i<units.length; i++) {
+			if (units[i].getId() != id) {
+				var lines = units[i].getCollisionLines();
+				for (var j=0; j<lines.length; j++) {
+					if (intersect(lines[j], line)) {
+						return callback(lines[j]);
+					}
+				}
+				
+			}
+		}
+		callback();
+	}
 
 	cursor.onSelect = function(selectionRectangle) {
 		var newSelection = [];
